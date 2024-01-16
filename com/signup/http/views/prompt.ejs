@@ -1,0 +1,29 @@
+<% if (typeof message !== 'undefined') { %>
+  <b><%= message %></b>
+<% } %>
+
+<b>Sign Up</b>
+
+<form action="/signup" method="post">
+	<div>
+	<label>Name:</label>
+	<input type="text" name="name"/><br/>
+	</div>
+	<div>
+	<label>Username:</label>
+	<input type="text" name="username"/><br/>
+	</div>
+	<div>
+	<label>Password:</label>
+	<input type="password" name="password"/>
+	</div>
+	<div>
+  <% if (typeof state !== 'undefined') { %>
+    <input type="hidden" name="state" value="<%= state %>"/>
+  <% } %>
+  <% if (typeof csrfToken !== 'undefined') { %>
+    <input type="hidden" name="csrf_token" value="<%= csrfToken %>"/>
+  <% } %>
+	<input type="submit" value="Submit"/>
+	</div>
+</form>
