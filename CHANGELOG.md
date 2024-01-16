@@ -6,4 +6,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+- Initial release.
+
 [0.0.1]: https://github.com/authnomicon/signup/releases/tag/v0.0.1

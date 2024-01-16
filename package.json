@@ -1,7 +1,7 @@
 {
   "name": "@authnomicon/signup",
   "version": "0.0.6",
-  "description": "Sign up components for the Authnomicon project.",
+  "description": "Signup components for the Authnomicon project.",
   "author": {
     "name": "Jared Hanson",
     "email": "jaredhanson@gmail.com",
@@ -9,10 +9,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/authnomicon/login.git"
+    "url": "git://github.com/authnomicon/signup.git"
   },
   "bugs": {
-    "url": "https://github.com/authnomicon/login/issues"
+    "url": "https://github.com/authnomicon/signup/issues"
   },
   "funding": {
     "type": "github",
