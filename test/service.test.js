@@ -5,7 +5,7 @@ var sinon = require('sinon');
 var factory = require('../com/service');
 
 
-describe('signup/http/service', function() {
+describe('service', function() {
   
   it('should be annotated', function() {
     expect(factory['@implements']).to.equal('http://i.bixbyjs.org/http/Service');

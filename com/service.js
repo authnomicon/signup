@@ -1,6 +1,7 @@
+// Module dependencies.
+var express = require('express');
+
 exports = module.exports = function(promptHandler, createHandler) {
-  var express = require('express');
-  
   var router = new express.Router();
   router.get('/', promptHandler);
   router.post('/', createHandler);
@@ -8,6 +9,7 @@ exports = module.exports = function(promptHandler, createHandler) {
   return router;
 };
 
+// Module annotations.
 exports['@implements'] = 'http://i.bixbyjs.org/http/Service';
 exports['@path'] = '/signup';
 exports['@require'] = [
