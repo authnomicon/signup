@@ -4,7 +4,7 @@ var expect = require('chai').expect;
 var chai = require('chai');
 var $require = require('proxyquire');
 var sinon = require('sinon');
-var factory = require('../../com/handlers/create');
+var factory = require('../../com/handlers/register');
 
 
 describe('signup/handlers/create', function() {
@@ -13,7 +13,7 @@ describe('signup/handlers/create', function() {
     var bodyParserSpy = sinon.spy();
     var csurfSpy = sinon.spy();
     var flowstateSpy = sinon.spy();
-    var factory = $require('../../com/handlers/create', {
+    var factory = $require('../../com/handlers/register', {
       'body-parser': { urlencoded: bodyParserSpy },
       'csurf': csurfSpy,
       'flowstate': flowstateSpy
