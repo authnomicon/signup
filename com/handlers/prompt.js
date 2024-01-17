@@ -1,7 +1,8 @@
-exports = module.exports = function(store) {
-  var path = require('path')
-    , ejs = require('ejs');
+// Module dependencies.
+var path = require('path')
+  , ejs = require('ejs');
 
+exports = module.exports = function(store) {
 
   function prompt(req, res, next) {
     res.locals.csrfToken = req.csrfToken();
@@ -29,6 +30,7 @@ exports = module.exports = function(store) {
   ];
 };
 
+// Module annotations.
 exports['@require'] = [
   'module:flowstate.Store'
 ];
