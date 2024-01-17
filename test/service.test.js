@@ -14,9 +14,9 @@ describe('service', function() {
   
   describe('create', function() {
     function promptHandler() {};
-    function createHandler() {};
+    function registerHandler() {};
     
-    var service = factory(promptHandler, createHandler);
+    var service = factory(promptHandler, registerHandler);
   
     it('should construct handler', function() {
       expect(service).to.be.a('function');
