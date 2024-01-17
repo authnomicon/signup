@@ -1,6 +1,15 @@
 // Module dependencies.
 var express = require('express');
 
+/**
+ * Create signup service.
+ *
+ * @param {express.RequestHandler} promptHandler - Handler which prompts the
+ *          user to sign up.
+ * @param {express.RequestHandler} registerHandler - Handler which registers the
+ *          user using the user-supplied information.
+ * @returns {express.Router}
+ */
 exports = module.exports = function(promptHandler, registerHandler) {
   var router = new express.Router();
   router.get('/', promptHandler);
