@@ -2,6 +2,16 @@
 var path = require('path')
   , ejs = require('ejs');
 
+/**
+ * Create signup prompt handler.
+ *
+ * Returns an HTTP handler that prompts the user to sign up by creating an
+ * account.  The prompt is rendered via HTML and the response will be submitted
+ * to the `register` handler via an HTML form.
+ *
+ * @param {flowstate.Store} store - Per-request state store.
+ * @returns {express.RequestHandler[]}
+ */
 exports = module.exports = function(store) {
 
   function prompt(req, res, next) {
