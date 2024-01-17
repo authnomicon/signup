@@ -47,7 +47,7 @@ exports = module.exports = function(passwords, authenticator, store) {
 };
 
 exports['@require'] = [
-  'http://i.authnomicon.org/credentials/PasswordService',
+  'module:@authnomicon/credentials.PasswordStore',
   'module:authnomicon.WebAuthenticator',
   'module:flowstate.Store'
 ];
