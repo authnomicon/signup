@@ -40,7 +40,7 @@ describe('signup/handlers/prompt', function() {
         })
         .finish(function() {
           expect(this).to.have.status(200);
-          expect(this).to.render('account/signup');
+          expect(this).to.render('signup');
           expect(this).to.include.locals([ 'csrfToken' ]);
           done();
         })

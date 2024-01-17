@@ -6,7 +6,7 @@ exports = module.exports = function(store) {
   function prompt(req, res, next) {
     res.locals.csrfToken = req.csrfToken();
     
-    res.render('account/signup', function(err, str) {
+    res.render('signup', function(err, str) {
       if (err && err.view) {
         var view = path.resolve(__dirname, '../views/prompt.ejs');
         ejs.renderFile(view, res.locals, function(err, str) {
