@@ -3,7 +3,7 @@
 var expect = require('chai').expect;
 
 
-describe('@authnomicon/login', function() {
+describe('@authnomicon/signup', function() {
   
   describe('package.json', function() {
     var json = require('../package.json');
