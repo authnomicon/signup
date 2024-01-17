@@ -126,6 +126,37 @@ describe('signup/handlers/create', function() {
         .listen();
     }); // should create user with password and redirect when no state
     
+    it('should next with error when user with password fails to be created', function(done) {
+      var passwords = new Object();
+      passwords.create = sinon.stub().yieldsAsync(new Error('something went wrong'));
+      
+      var handler = factory(passwords, mockAuthenticator, noopStateStore);
+      
+      chai.express.use(handler)
+        .request(function(req, res) {
+          req.login = sinon.stub().yieldsAsync(null);
+          
+          req.method = 'POST';
+          req.body = {
+            username: 'jane',
+            password: 'opensesame',
+            name: 'Jane Doe',
+            csrf_token: '3aev7m03-1WTaAw4lJ_GWEMkjwFBu_lwNWG8'
+          };
+          req.session = {
+            csrfSecret: 'zbVXAFVVUSXO0_ZZLBYVP9ue'
+          };
+          req.connection = {};
+        })
+        .next(function(err, req, res) {
+          expect(err).to.be.an.instanceof(Error);
+          expect(err.message).to.equal('something went wrong');
+          expect(req.login).to.not.be.called;
+          done();
+        })
+        .listen();
+    }); // should next with error when user with password fails to be created
+    
   }); // handler
   
 });
