@@ -1,5 +1,7 @@
 exports = module.exports = function(passwords, authenticator, store) {
   
+  // TODO: Add password confirmation here
+  
   // TODO: Make this handle a realm parameter, to mirror HTTP Basic auth
   function register(req, res, next) {
     var user = {
