@@ -1,3 +1,16 @@
+/**
+ * Create signup registration handler.
+ *
+ * Returns an HTTP handler that creates a new account with the user-supplied
+ * information and credentials.  The information is submitted via an HTML form
+ * which was rendered by the `prompt` handler.
+ *
+ * @param {@authnomicon/credentials.PasswordStore} passwords - Storage mechanism
+ *          used to access and persist password credentials.
+ * @param {passport.Authenticator} authenticator - Request authenticator.
+ * @param {flowstate.Store} store - Per-request state store.
+ * @returns {express.RequestHandler[]}
+ */
 exports = module.exports = function(passwords, authenticator, store) {
   
   // TODO: Add password confirmation here
