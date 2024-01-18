@@ -29,7 +29,7 @@
   "assembly": {
     "namespace": "org.authnomicon/signup",
     "components": [
-      "signup/http/service"
+      "service"
     ]
   },
   "directories": {
