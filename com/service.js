@@ -11,7 +11,7 @@ var express = require('express');
  * @returns {express.Router}
  */
 exports = module.exports = function(promptHandler, registerHandler) {
-  var router = new express.Router();
+  var router = express.Router();
   router.get('/', promptHandler);
   router.post('/', registerHandler);
   
