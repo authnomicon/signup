@@ -86,7 +86,7 @@ describe('signup/handlers/register', function() {
         .listen();
     }); // should create user with password and resume state
     
-    it('should create user with password and redirect when no state', function(done) {
+    it('should create user with password', function(done) {
       var passwords = new Object();
       passwords.create = sinon.stub().yieldsAsync(null, { id: '248289761001', displayName: 'Jane Doe' });
       
@@ -123,9 +123,9 @@ describe('signup/handlers/register', function() {
           done();
         })
         .listen();
-    }); // should create user with password and redirect when no state
+    }); // should create user with password
     
-    it('should next with error when user with password fails to be created', function(done) {
+    it('should error when failing to create account', function(done) {
       var passwords = new Object();
       passwords.create = sinon.stub().yieldsAsync(new Error('something went wrong'));
       
@@ -154,9 +154,9 @@ describe('signup/handlers/register', function() {
           done();
         })
         .listen();
-    }); // should next with error when user with password fails to be created
+    }); // should error when failing to create account
     
-    it('should next with error when login session fails to be established', function(done) {
+    it('should error when failing to log in', function(done) {
       var passwords = new Object();
       passwords.create = sinon.stub().yieldsAsync(null, { id: '248289761001', displayName: 'Jane Doe' });
       
@@ -185,7 +185,7 @@ describe('signup/handlers/register', function() {
           done();
         })
         .listen();
-    }); // should next with error when login session fails to be established
+    }); // should error when failing to log in
     
   }); // handler
   
