@@ -46,7 +46,7 @@ describe('signup/handlers/register', function() {
     };
     var mockStateStore = new Object();
     
-    it('should create', function(done) {
+    it('should create user', function(done) {
       var passwords = new Object();
       passwords.create = sinon.stub().yieldsAsync(null, { id: '248289761001', displayName: 'Jane Doe' });
       
@@ -121,6 +121,131 @@ describe('signup/handlers/register', function() {
         })
         .listen();
     }); // should create user with name
+    
+    it('should create user with given name and family name', function(done) {
+      var passwords = new Object();
+      passwords.create = sinon.stub().yieldsAsync(null, { id: '248289761001', displayName: 'Jane Doe' });
+      
+      var handler = factory(passwords, mockAuthenticator, mockStateStore);
+      
+      chai.express.use(handler)
+        .request(function(req, res) {
+          req.login = sinon.stub().yieldsAsync(null);
+          
+          req.method = 'POST';
+          req.body = {
+            username: 'jane',
+            password: 'opensesame',
+            given_name: 'Jane',
+            family_name: 'Doe',
+            csrf_token: '3aev7m03-1WTaAw4lJ_GWEMkjwFBu_lwNWG8'
+          };
+          req.session = {
+            csrfSecret: 'zbVXAFVVUSXO0_ZZLBYVP9ue'
+          };
+          req.connection = {};
+        })
+        .finish(function() {
+          expect(passwords.create).to.be.calledOnceWith({
+            username: 'jane',
+            name: {
+              givenName: 'Jane',
+              familyName: 'Doe'
+            }
+          }, 'opensesame');
+          expect(this.req.login).to.be.calledOnceWith({
+            id: '248289761001',
+            displayName: 'Jane Doe'
+          });
+          
+          expect(this.statusCode).to.equal(302);
+          expect(this.getHeader('Location')).to.equal('/');
+          done();
+        })
+        .listen();
+    }); // should create user with given name and family name
+    
+    it('should create user with given name', function(done) {
+      var passwords = new Object();
+      passwords.create = sinon.stub().yieldsAsync(null, { id: '248289761001', displayName: 'Jane Doe' });
+      
+      var handler = factory(passwords, mockAuthenticator, mockStateStore);
+      
+      chai.express.use(handler)
+        .request(function(req, res) {
+          req.login = sinon.stub().yieldsAsync(null);
+          
+          req.method = 'POST';
+          req.body = {
+            username: 'jane',
+            password: 'opensesame',
+            given_name: 'Jane',
+            csrf_token: '3aev7m03-1WTaAw4lJ_GWEMkjwFBu_lwNWG8'
+          };
+          req.session = {
+            csrfSecret: 'zbVXAFVVUSXO0_ZZLBYVP9ue'
+          };
+          req.connection = {};
+        })
+        .finish(function() {
+          expect(passwords.create).to.be.calledOnceWith({
+            username: 'jane',
+            name: {
+              givenName: 'Jane'
+            }
+          }, 'opensesame');
+          expect(this.req.login).to.be.calledOnceWith({
+            id: '248289761001',
+            displayName: 'Jane Doe'
+          });
+          
+          expect(this.statusCode).to.equal(302);
+          expect(this.getHeader('Location')).to.equal('/');
+          done();
+        })
+        .listen();
+    }); // should create user with given name
+    
+    it('should create user with family name', function(done) {
+      var passwords = new Object();
+      passwords.create = sinon.stub().yieldsAsync(null, { id: '248289761001', displayName: 'Jane Doe' });
+      
+      var handler = factory(passwords, mockAuthenticator, mockStateStore);
+      
+      chai.express.use(handler)
+        .request(function(req, res) {
+          req.login = sinon.stub().yieldsAsync(null);
+          
+          req.method = 'POST';
+          req.body = {
+            username: 'jane',
+            password: 'opensesame',
+            family_name: 'Doe',
+            csrf_token: '3aev7m03-1WTaAw4lJ_GWEMkjwFBu_lwNWG8'
+          };
+          req.session = {
+            csrfSecret: 'zbVXAFVVUSXO0_ZZLBYVP9ue'
+          };
+          req.connection = {};
+        })
+        .finish(function() {
+          expect(passwords.create).to.be.calledOnceWith({
+            username: 'jane',
+            name: {
+              familyName: 'Doe'
+            }
+          }, 'opensesame');
+          expect(this.req.login).to.be.calledOnceWith({
+            id: '248289761001',
+            displayName: 'Jane Doe'
+          });
+          
+          expect(this.statusCode).to.equal(302);
+          expect(this.getHeader('Location')).to.equal('/');
+          done();
+        })
+        .listen();
+    }); // should create user with family name
     
     it('should create user and resume state', function(done) {
       var passwords = new Object();

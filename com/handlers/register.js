@@ -20,6 +20,8 @@ exports = module.exports = function(passwords, authenticator, store) {
       username: req.body.username
     };
     if (req.body.name) { user.displayName = req.body.name; }
+    if (req.body.family_name) { (user.name = user.name || {}).familyName = req.body.family_name; }
+    if (req.body.given_name) { (user.name = user.name || {}).givenName = req.body.given_name; }
     
     passwords.create(user, req.body.password, function(err, user) {
       if (err) { return next(err); }
