@@ -48,6 +48,6 @@ exports = module.exports = function(passwords, authenticator, store) {
 
 exports['@require'] = [
   'module:@authnomicon/credentials.PasswordStore',
-  'module:authnomicon.WebAuthenticator',
+  'module:passport.Authenticator',
   'module:flowstate.Store'
 ];

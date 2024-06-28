@@ -7,7 +7,7 @@ var sinon = require('sinon');
 var factory = require('../../com/handlers/register');
 
 
-describe('signup/handlers/create', function() {
+describe('signup/handlers/register', function() {
   
   it('should create handler', function() {
     var bodyParserSpy = sinon.spy();
@@ -26,8 +26,8 @@ describe('signup/handlers/create', function() {
     
     expect(handler).to.be.an('array');
     expect(bodyParserSpy).to.be.calledOnce;
-    expect(bodyParserSpy).to.be.calledBefore(csurfSpy);
     expect(bodyParserSpy).to.be.calledWith({ extended: false });
+    expect(bodyParserSpy).to.be.calledBefore(csurfSpy);
     expect(csurfSpy).to.be.calledOnce;
     expect(csurfSpy).to.be.calledBefore(flowstateSpy);
     expect(flowstateSpy).to.be.calledOnce;
@@ -44,14 +44,13 @@ describe('signup/handlers/create', function() {
         next();
       };
     };
-    var noopStateStore = new Object();
-    
+    var mockStateStore = new Object();
     
     it('should create user with password and resume state', function(done) {
       var passwords = new Object();
       passwords.create = sinon.stub().yieldsAsync(null, { id: '248289761001', displayName: 'Jane Doe' });
       
-      var handler = factory(passwords, mockAuthenticator, noopStateStore);
+      var handler = factory(passwords, mockAuthenticator, mockStateStore);
       
       chai.express.use(handler)
         .request(function(req, res) {
@@ -91,7 +90,7 @@ describe('signup/handlers/create', function() {
       var passwords = new Object();
       passwords.create = sinon.stub().yieldsAsync(null, { id: '248289761001', displayName: 'Jane Doe' });
       
-      var handler = factory(passwords, mockAuthenticator, noopStateStore);
+      var handler = factory(passwords, mockAuthenticator, mockStateStore);
       
       chai.express.use(handler)
         .request(function(req, res) {
@@ -130,7 +129,7 @@ describe('signup/handlers/create', function() {
       var passwords = new Object();
       passwords.create = sinon.stub().yieldsAsync(new Error('something went wrong'));
       
-      var handler = factory(passwords, mockAuthenticator, noopStateStore);
+      var handler = factory(passwords, mockAuthenticator, mockStateStore);
       
       chai.express.use(handler)
         .request(function(req, res) {
@@ -161,7 +160,7 @@ describe('signup/handlers/create', function() {
       var passwords = new Object();
       passwords.create = sinon.stub().yieldsAsync(null, { id: '248289761001', displayName: 'Jane Doe' });
       
-      var handler = factory(passwords, mockAuthenticator, noopStateStore);
+      var handler = factory(passwords, mockAuthenticator, mockStateStore);
       
       chai.express.use(handler)
         .request(function(req, res) {
